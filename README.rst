@@ -23,7 +23,7 @@ There are 3 main objects in the library,
 SHService
 ^^^^^^^^^
 
-This is the main library you create per service to communicate with it. It takes several parameters on construction, where those in square brackets are optional::
+This is the main library you create per service to communicate with it. It takes several parameters on construction, where those in square brackets are optional,
 
 .. code:: python
     import stackhut_client as client
