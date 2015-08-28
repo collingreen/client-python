@@ -25,6 +25,8 @@ SHService
 
 This is the main library you create per service to communicate with it. It takes several parameters on construction, where those in square brackets are optional::
 
+.. code:: python
+
     client.SHService(author, service_name, [service_version], [auth], [host])
 
 * author - The author of the service
