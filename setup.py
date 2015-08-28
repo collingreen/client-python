@@ -28,7 +28,7 @@ setup(
     license='Apache',
     author="StackHut",
     author_email='client@stackhut.com',
-    url='https://github.com/stackhut/stackhut-client',
+    url='https://github.com/stackhut/client-python',
     # download_url = 'https://github.com/stackhut/stackhut-tool/tarball/0.1.1'
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests", ""]),
     include_package_data=True,
