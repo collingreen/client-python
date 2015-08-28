@@ -36,7 +36,9 @@ This is the main library you create per service to communicate with it. It takes
 * auth - An `SHAuth` object used to authenticate requests for private services
 * host - URL for the StackHut API server, can be set to point to local servers during development, is `https://api.stackhut.com` if left blank
 
-To make a remote call, just call the interface and method name on the service object, e.g.::
+To make a remote call, just call the interface and method name on the service object, e.g.,
+
+.. code:: python
 
     service.Default.renderWebpage("www.stackhut.com", 1024, 768)
 
@@ -44,7 +46,9 @@ To make a remote call, just call the interface and method name on the service ob
 SHAuth
 ^^^^^^
 
-An optional object used to authenticate requests to a service::
+An optional object used to authenticate requests to a service,
+
+.. code:: python
 
     client.SHAuth(user, [hash], [token])
 
@@ -68,14 +72,18 @@ The object has 3 parameters,
 Example
 -------
 
-Using the existing service called `demo-nodejs` by user `stackhut`, we create the main service object::
+Using the existing service called `demo-nodejs` by user `stackhut`, we create the main service object,
 
-    from stackhut_client import SHService, SHAuth
-    s = SHService('stackhut', 'web-tools')
+.. code:: python
 
-From here we can call any functions on any interfaces exposed by the hosted `stackhut/demo-nodejs` service, as follows::
+    import stackhut_client as client
+    service = client.SHService('stackhut', 'web-tools')
 
-    result = s.Default.renderWebpage("www.stackhut.com", 1024, 768)
+From here we can call any functions on any interfaces exposed by the hosted `stackhut/demo-nodejs` service, as follows,
+
+.. code:: python
+
+    result = service.Default.renderWebpage("www.stackhut.com", 1024, 768)
     print("Page render at {}".format(result))
     
     
