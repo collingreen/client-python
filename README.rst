@@ -1,6 +1,6 @@
-=======================
-StackHut Client Library
-=======================
+==============================
+StackHut Python Client Library
+==============================
 
 .. image:: https://img.shields.io/travis/stackhut/client-python.svg
         :target: https://travis-ci.org/stackhut/client-python
