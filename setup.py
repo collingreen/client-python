@@ -21,7 +21,7 @@ test_requirements = []
 
 setup(
     name='stackhut-client',
-    version='0.1.0',
+    version='0.1.1',
     description="StackHut client-side Python library",
     long_description=(read('README.rst') + '\n\n' +
                       read('AUTHORS.rst')),
@@ -29,7 +29,7 @@ setup(
     author="StackHut",
     author_email='client@stackhut.com',
     url='https://github.com/stackhut/stackhut-client',
-    # download_url = 'https://github.com/stackhut/stackhut-tool/tarball/0.1.0'
+    # download_url = 'https://github.com/stackhut/stackhut-tool/tarball/0.1.1'
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests", ""]),
     include_package_data=True,
     install_requires=requirements,
