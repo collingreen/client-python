@@ -40,7 +40,7 @@ To make a remote call, just call the interface and method name on the service ob
 
 .. code:: python
 
-    service.Default.renderWebpage("www.stackhut.com", 1024, 768)
+    result = service.Interface.method(params, ...)
 
 
 SHAuth
@@ -83,7 +83,7 @@ From here we can call any functions on any interfaces exposed by the hosted `sta
 
 .. code:: python
 
-    result = service.Default.renderWebpage("www.stackhut.com", 1024, 768)
+    result = service.Default.renderWebpage("http://www.stackhut.com", 1024, 768)
     print("Page render at {}".format(result))
     
     
