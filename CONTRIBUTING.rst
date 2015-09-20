@@ -67,6 +67,7 @@ Ready to contribute? Here's how to set up `stackhut` for local development.
     $ mkvirtualenv client-python
     $ cd client-python/
     $ python setup.py develop
+    $ pip3 install -r dev_requirements.txt
 
 4. Create a branch for local development::
 
@@ -79,8 +80,6 @@ Ready to contribute? Here's how to set up `stackhut` for local development.
     $ flake8 stackhut tests
     $ python setup.py test
     $ tox
-
-   To get flake8 and tox, just pip install them into your virtualenv.
 
 6. Commit your changes and push your branch to GitHub::
 
