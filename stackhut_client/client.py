@@ -27,6 +27,7 @@ import requests
 
 __all__ = ['SHRPCError', 'SHAuth', 'SHService']
 
+
 class SHRPCError(Exception):
     def __init__(self, code, message, data=None):
         self.code = code
@@ -37,7 +38,9 @@ class SHRPCError(Exception):
 class SHAuth:
     def __init__(self, username, hash=None, token=None):
         if hash is None and token is None:
-            raise ValueError("Must provide either password or api token to auth")
+            raise ValueError(
+                "Must provide either password or api token to auth"
+            )
         self.username = username
         self.hash = hash
         self.token = token
@@ -53,7 +56,12 @@ class SHAuth:
 class SHService:
     json_header = {'content-type': 'application/json'}
 
-    def __init__(self, author, name, version='latest', auth=None, host='https://api.stackhut.com'):
+    def __init__(self,
+                 author,
+                 name,
+                 version='latest',
+                 auth=None,
+                 host='https://api.stackhut.com'):
         # self.service_short_name = "{}/{}:{}".format(author, name, version)
         self.service_short_name = "{}/{}".format(author, name)
         self.auth = auth
@@ -62,7 +70,12 @@ class SHService:
         # call to stackhut and get the json
 
     def _make_call(self, iface_name, method, params):
-        log.info("Making RPC call to {}.{}.{}".format(self.service_short_name, iface_name, method))
+        log.info("Making RPC call to {}.{}.{}".format(
+            self.service_short_name,
+            iface_name,
+            method
+            )
+        )
 
         msg = {
             "service": self.service_short_name,
@@ -77,28 +90,41 @@ class SHService:
         if self.auth:
             msg['auth'] = self.auth.msg
 
-        r = requests.post(self.run_endpoint, data=json.dumps(msg), headers=self.json_header)
+        r = requests.post(
+            self.run_endpoint,
+            data=json.dumps(msg),
+            headers=self.json_header
+        )
 
         try:
             r_json = r.json()
         except:
-            # TODO - fix error logic when hosted platform sends correct HTTP status codes
+            # TODO - fix error logic when hosted platform sends
+            # correct HTTP status codes
             r_json = {}
 
-        if r.status_code == requests.codes.ok and 'result' in r_json.get('response', {}):
+        if r.status_code == requests.codes.ok and \
+                'result' in r_json.get('response', {}):
             return r_json['response']['result']
         elif 'error' in r_json.get('response', {}):
             # log.error("HTTP Error {}".format(r.status_code))
-            # log.error("RPC Error {}".format(r_json['response']['error']['code']))
+            # log.error(
+            #     "RPC Error {}".format(r_json['response']['error']['code'])
+            # )
             # log.error(r_json)
             error_msg = r_json['response']['error']
-            raise SHRPCError(error_msg['code'], error_msg['message'], error_msg.get('data', {}))
+            raise SHRPCError(
+                error_msg['code'],
+                error_msg['message'],
+                error_msg.get('data', {})
+            )
         else:
             log.error("HTTP Error {}".format(r.status_code))
             r.raise_for_status()
 
     def __getattr__(self, iface_name):
         return IFaceCall(self, iface_name)
+
 
 class IFaceCall:
     def __init__(self, service, iface_name):
@@ -111,7 +137,6 @@ class IFaceCall:
         return method
 
 
-
 if __name__ == '__main__':
     import argparse
 
@@ -122,11 +147,15 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     sh_auth = SHAuth('mands', hash=args.hash)
-    sh_client = SHService('stackhut', 'stackhut', host='http://localhost:8083/run', auth=sh_auth)
+    sh_client = SHService(
+        'stackhut',
+        'stackhut',
+        host='http://localhost:8083/run',
+        auth=sh_auth
+    )
     log.info("Result - {}".format(sh_client.Default.getEnvVar('PATH')))
 
     try:
         log.info("Result - {}".format(sh_client.Default.sub(1, 2)))
     except SHRPCError as e:
         log.error("Caught error - {}".format(repr(e)))
-

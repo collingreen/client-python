@@ -13,5 +13,4 @@
 # limitations under the License.
 __version__ = '0.1.1'
 
-from .client import *
-
+from .client import *  # NOQA F403
