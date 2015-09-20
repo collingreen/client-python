@@ -36,7 +36,7 @@ clean-test:
 	rm -fr htmlcov/
 
 lint:
-	flake8 stackhut tests
+	flake8 stackhut_client tests
 
 test:
 	python3 setup.py test
